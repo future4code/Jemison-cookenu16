@@ -32,3 +32,10 @@ export class Unauthorized extends CustomError{
         super(401, "Você não tem permissão para realizar a ação")
     }
 }
+
+export class InvalidLenght extends CustomError{ 
+    constructor(){
+        super(400, "Deve conter mais de 4 letras")
+    }
+}
+
