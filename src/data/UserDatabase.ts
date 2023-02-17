@@ -44,4 +44,17 @@ export class UserDatabase extends BaseDatabase {
       throw new CustomError(400, error.message);
     }
   };
+
+  public selectUserById = async (id: string): Promise<user> => {
+    try {
+      const result = await UserDatabase.connection("cookenu_users")
+        .select()
+        .where({ id });
+
+      return result[0];
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  };
+
 }

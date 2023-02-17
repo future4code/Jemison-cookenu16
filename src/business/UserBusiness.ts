@@ -1,4 +1,4 @@
-import { UserInputDTO, LoginInputDTO, RecipeInputDTO } from "./../model/user";
+import { UserInputDTO, LoginInputDTO, RecipeInputDTO,  } from "./../model/user";
 import { IdGenerator } from "./../services/IdGenerator";
 import {
   InvalidPassword,
@@ -12,6 +12,8 @@ import { HashManager } from "../services/HashManager";
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../error/customError";
 import { user } from "../model/user";
+
+
 
 const idGenerator = new IdGenerator();
 const tokenGenerator = new TokenGenerator();
@@ -125,4 +127,17 @@ export class UserBusiness {
       throw new CustomError(400, error.message);
     }
   };
+
+  public async findUserDataById(id: string): Promise<user> {
+    try {
+      const userData = await userDatabase.selectUserById(id);
+      if (!userData) {
+        throw new CustomError(404, "User not found");
+      }
+      return userData;
+    } catch (error: any) {
+      throw new CustomError(400, error.message);
+    }
+  }
 }
+
