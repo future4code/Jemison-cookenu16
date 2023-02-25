@@ -132,7 +132,7 @@ export class UserBusiness {
     try {
       const userData = await userDatabase.selectUserById(id);
       if (!userData) {
-        throw new CustomError(404, "User not found");
+        throw new CustomError(404, "Usuário não encontrado");
       }
       return userData;
     } catch (error: any) {
